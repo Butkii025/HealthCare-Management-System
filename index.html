@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swasthya-Setu - Digital Health Wallet</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">⚕️</div>
+            <h1>Swasthya-Setu</h1>
+            <p>Digital Health Records for Migrant Workers</p>
+        </div>
+        
+        <div class="app-content">
+            <div class="sidebar">
+                <a href="#" class="nav-item active" data-page="dashboard">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="#" class="nav-item" data-page="profile">
+                    <i class="fas fa-user"></i> My Profile
+                </a>
+                <a href="#" class="nav-item" data-page="health">
+                    <i class="fas fa-heartbeat"></i> Health Records
+                </a>
+                <a href="#" class="nav-item" data-page="documents">
+                    <i class="fas fa-file-medical"></i> Medical Documents
+                </a>
+                <a href="#" class="nav-item" data-page="qr">
+                    <i class="fas fa-qrcode"></i> My QR Code
+                </a>
+                <a href="#" class="nav-item" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+                
+                <a href="#" class="nav-item" id="process-link">
+                    <i class="fas fa-cogs"></i> Process
+                </a>
+
+                <div id="main-content-area">
+                  </div>
+
+
+                
+                <div class="language-selector">
+                    <label for="language">Select Language:</label>
+                    <select id="language">
+                        <option value="en">English</option>
+                        <option value="ml">Malayalam</option>
+                        <option value="hi">Hindi</option>
+                        <option value="bn">Bengali</option>
+                        <option value="ta">Tamil</option>
+                        <option value="te">Telugu</option>
+                    </select>
+                </div>
+            </div>
+            
+            
+            <div class="main-content">
+                <!-- Login Selection Page -->
+                <div class="page active" id="login-selection-page">
+                    <h2>Welcome to Swasthya-Setu⚕️ </h2>
+                    <p>Select your login method :</p><br>
+                    
+                    <div class="login-options">
+                        <div class="login-option active" data-role="user">
+                            <i class="fas fa-user"></i>
+                            <h3>Login as User</h3>
+                            <p>Access your health records</p>
+                        </div>
+                        <div class="login-option" data-role="doctor">
+                            <i class="fas fa-user-md"></i>
+                            <h3>Login as Doctor</h3>
+                            <p>Access patient health records</p>
+                        </div>
+                        <div class="login-option" data-role="admin">
+                            <i class="fas fa-user-cog"></i>
+                            <h3>Login as Admin</h3>
+                            <p>System administration</p>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-block" id="proceed-login-btn">
+                        <i class="fas fa-arrow-right"></i> Proceed to Login
+                    </button>
+                </div>
+                
+
+                <!-- User Login Page -->
+                <div class="page" id="user-login-page">
+                    <h2>User Login</h2>
+                    <p>Access your digital health records securely :</p><br>
+                    
+                    <div class="input-group">
+                        <label for="phone">Mobile Number</label>
+                        <input type="tel" id="phone" placeholder="Enter your mobile number">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password">
+                    </div>
+                    
+                    <button class="btn btn-block" id="user-login-btn">
+                        <i class="fas fa-sign-in-alt"></i> Login to Health Wallet
+                    </button>
+                    
+                    <div class="links">
+                        <a href="#" id="show-user-register">Create Account</a>
+                        <a href="#" id="back-to-selection">Back</a>
+                    </div>
+                </div>
+                
+
+                <!-- Doctor Login Page -->
+                <div class="page" id="doctor-login-page">
+                    <h2>Doctor Login</h2>
+                    <p>Access your account :</p><br>
+                    
+                    <div class="input-group">
+                        <label for="doctor-phone">Mobile Number</label>
+                        <input type="tel" id="doctor-phone" placeholder="Enter your mobile number">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="doctor-password">Password</label>
+                        <input type="password" id="doctor-password" placeholder="Enter your password">
+                    </div>
+                    
+                    <button class="btn btn-block" id="doctor-login-btn">
+                        <i class="fas fa-sign-in-alt"></i> Login to Doctor Portal
+                    </button>
+                    
+                    <div class="links">
+                        <a href="#" id="show-doctor-register">Doctor Registration</a>
+                        <a href="#" id="doctor-back-to-selection">Back</a>
+                    </div>
+                </div>
+                
+                <!-- Admin Login Page -->
+                <div class="page" id="admin-login-page">
+                    <h2>Admin Login</h2>
+                    <p>Access administrative functions :</p><br>
+                    
+                    <div class="input-group">
+                        <label for="admin-username">Username</label>
+                        <input type="text" id="admin-username" placeholder="Enter admin username">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="admin-password">Password</label>
+                        <input type="password" id="admin-password" placeholder="Enter admin password">
+                    </div>
+                    
+                    <button class="btn btn-block" id="admin-login-btn">
+                        <i class="fas fa-sign-in-alt"></i> Login to Admin Portal
+                    </button>
+                    
+                    <div class="links">
+                        <a href="#" id="admin-back-to-selection">Back</a>
+                    </div>
+                </div>
+                
+                <!-- User Registration Page -->
+                <div class="page" id="user-register-page">
+                    <h2>Create Your Health ID</h2>
+                    <p>Get started with your digital health records :</p><br>
+                    
+                    <div class="input-group">
+                        <label for="reg-name">Full Name</label>
+                        <input type="text" id="reg-name" placeholder="Enter your full name" required="true">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="reg-phone">Mobile Number</label>
+                        <input type="tel" id="reg-phone" placeholder="Enter your mobile number" required="true">
+                    </div>
+                    <div class="input-group">
+                        <label for="reg-aadhar">Aadhar Number</label>
+                        <input type="tel" id="reg-aadhar" placeholder="Enter your Aadhar number" required="true">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="reg-password">Password</label>
+                        <input type="password" id="reg-password" placeholder="Create a password" required="true">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="reg-confirm-password">Confirm Password</label>
+                        <input type="password" id="reg-confirm-password" placeholder="Confirm your password" required="true">
+                    </div>
+                    
+                    <button class="btn btn-block" id="register-btn">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </button>
+                    
+                    <div class="links">
+                        <a href="#" id="user-back-to-login">Back to Login</a>
+                    </div>
+                </div>
+                
+                <!-- Doctor Registration Page -->
+                <div class="page" id="doctor-register-page">
+                    <h2>Doctor Registration</h2>
+                    <p>Register for healthcare provider access :</p><br>
+                    
+                    <div class="input-group">
+                        <label for="doctor-name">Full Name</label>
+                        <input type="text" id="doctor-name" placeholder="Enter your full name" required="true">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="doctor-reg-phone">Mobile Number</label>
+                        <input type="tel" id="doctor-reg-phone" placeholder="Enter your mobile number" required="true">
+                    </div>
+
+                     <div class="input-group">
+                        <label for="doctor-reg-aadhar">Aadhar Number</label>
+                        <input type="tel" id="doctor-reg-aadhar" placeholder="Enter your Aadhar number" required="true">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="doctor-reg-password">Password</label>
+                        <input type="password" id="doctor-reg-password" placeholder="Create a password" required="true">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="doctor-reg-confirm-password">Confirm Password</label>
+                        <input type="password" id="doctor-reg-confirm-password" placeholder="Confirm your password" required="true">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="doctor-reg-id">Doctor ID </label>
+                        <input type="text" id="doctor-reg-id" placeholder="Enter your professional ID" >
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="hospital-name">Hospital Name</label>
+                        <input type="text" id="hospital-name" placeholder="Enter hospital name">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="hospital-address">Hospital Address</label>
+                        <textarea id="hospital-address" placeholder="Enter hospital address"></textarea>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="doctor-reg-id-photo">Doctor-ID Photo </label>
+                        <input type="file" id="doctor-reg-id-photo" accept="image/*">
+                    </div>
+                    
+                    <button class="btn btn-block" id="doctor-register-btn">
+                        <i class="fas fa-user-plus"></i> Register as Doctor
+                    </button>
+                    
+                    <div id="generated-doctor-id" class="doctor-id-display" style="display: none;">
+                        Your Doctor ID: <span id="doctor-id-value"></span>
+                    </div>
+                    
+                    <div class="links">
+                        <a href="#" id="doctor-back-to-login">Back to Login</a>
+                    </div>
+                </div>
+                
+                <!-- Dashboard Page -->
+                <div class="page" id="dashboard-page">
+                    <h2>Health Dashboard</h2>
+                    <p>Welcome back, <span id="user-name">User</span>!</p>
+                    
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <h3>Health Summary</h3>
+                            <div class="health-info">
+                                <div class="info-item">
+                                    <div class="info-label">Blood Group</div>
+                                    <div class="info-value" id="info-blood">O+</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Last Checkup</div>
+                                    <div class="info-value" id="info-checkup">07 Sep 2025</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Allergies</div>
+                                    <div class="info-value" id="info-allergies">None</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Chronic Conditions</div>
+                                    <div class="info-value" id="info-conditions">None</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="dashboard-card">
+                            <h3>Quick Actions</h3>
+                            <button class="btn btn-block" id="sos-button" style="background-color: #dc2626; margin-bottom: 10px;">
+                                <i class="fas fa-bell"></i> Emergency SOS
+                            </button>
+                            <button class="btn btn-block" id="quick-qr-btn">
+                                <i class="fas fa-qrcode"></i> Show My QR Code
+                            </button>
+                            <button class="btn btn-block" id="chatbot-btn" style="margin-top: 10px;">
+                                <i class="fas fa-comments"></i> Health Assistant
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="health-card">
+                        <h3>Recent Medical Documents</h3>
+                        <ul class="document-list" id="recent-documents">
+                            <li class="document-item">
+                                <div>Blood Test Report</div>
+                                <div class="document-actions">
+                                    <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn"><i class="fas fa-download"></i></button>
+                                </div>
+                            </li>
+                            <li class="document-item">
+                                <div>Doctor Prescription</div>
+                                <div class="document-actions">
+                                    <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn"><i class="fas fa-download"></i></button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Doctor Dashboard Page -->
+
+                
+                <div class="page" id="doctor-dashboard-page">
+                    <h2>Doctor Portal</h2>
+                    <p>Welcome, Dr. <span id="doctor-display-name">Name</span>!</p><br>
+                    
+
+                    <div class="health-card">
+                        <h3>Your Information</h3>
+                        <div class="health-info">
+                            <div class="info-item">
+                                <div class="info-label">Doctor ID</div>
+                                <div class="info-value" id="doctor-info-id">DOC123</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Hospital</div>
+                                <div class="info-value" id="doctor-info-hospital">Hospital Name</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Phone Number</div>
+                                <div class="info-value" id="doctor-info-phone">+91 9876543210</div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="health-card">
+                        <h3>Patient Access</h3>
+                        <div class="input-group">
+                            <label for="patient-qr">Scan Patient QR Code</label>
+                            <input type="text" id="patient-qr" placeholder="Scan or enter patient QR code">
+                        </div>
+                        <button class="btn btn-block">
+                            <i class="fas fa-search"></i> Access Patient Records
+                        </button>
+                    </div>
+                </div>
+                
+
+
+                <!-- Admin Dashboard Page -->
+                <div class="page" id="admin-dashboard-page">
+                    <h2>Admin Portal</h2>
+                    <p>System administration and analytics</p><br>
+                    
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <h3>System Analytics</h3>
+                            <div class="chart-container" style="height: 200px;">
+                                <canvas id="adminAnalyticsChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="dashboard-card">
+                            <h3>Quick Stats</h3>
+                            <div class="health-info">
+                                <div class="info-item">
+                                    <div class="info-label">Total Users</div>
+                                    <div class="info-value">1,243</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Active Doctors</div>
+                                    <div class="info-value">87</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Health Records</div>
+                                    <div class="info-value">5,892</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="health-card">
+                        <h3>System Management</h3>
+                        <div class="health-info">
+                            <div class="info-item">
+                                <button class="btn btn-block">
+                                    <i class="fas fa-users"></i> User Management
+                                </button>
+                            </div>
+                            <div class="info-item">
+                                <button class="btn btn-block">
+                                    <i class="fas fa-hospital"></i> Facility Management
+                                </button>
+                            </div>
+                            <div class="info-item">
+                                <button class="btn btn-block">
+                                    <i class="fas fa-chart-line"></i> Analytics Reports
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Page -->
+                <div class="page" id="profile-page">
+                    <h2>My Profile</h2>
+                    <p>Manage your personal information</p>
+                    
+                    <div class="input-group">
+                        <label for="profile-name">Full Name</label>
+                        <input type="text" id="profile-name" placeholder="Your full name">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="profile-phone">Mobile Number</label>
+                        <input type="tel" id="profile-phone" placeholder="Your mobile number" disabled>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="profile-dob">Date of Birth</label>
+                        <input type="date" id="profile-dob">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="profile-blood">Blood Group</label>
+                        <select id="profile-blood">
+                            <option value="">Select Blood Group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="profile-allergies">Allergies</label>
+                        <textarea id="profile-allergies" placeholder="List any allergies you have"></textarea>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="profile-conditions">Chronic Conditions</label>
+                        <textarea id="profile-conditions" placeholder="List any chronic health conditions"></textarea>
+                    </div>
+                    
+                    <button class="btn" id="save-profile-btn">
+                        <i class="fas fa-save"></i> Save Profile
+                    </button>
+                </div>
+
+                <!-- Health Records Page -->
+                <div class="page" id="health-page">
+                    <h2>Health Records</h2>
+                    <p>Your complete medical history</p>
+                    
+                    <div class="health-card">
+                        <h3>Immunization Status :</h3>
+                        <div class="health-info">
+                            <div class="info-item">
+                                <div class="info-label">COVID-19 (Vaccine)</div>
+                                <div class="info-value" style="color: green;">Complete</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Tuberculosis (BCG)</div>
+                                <div class="info-value" style="color: green;">Timely</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Hepatitis B</div>
+                                <div class="info-value" style="color: rgb(189, 63, 82);">Dose 2 of 3 Complete</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="health-card">
+                        <h3>Recent Health Visits :</h3>
+                        <ul class="document-list">
+                            <li class="document-item">
+                                <div>
+                                    <div class="info-label">Medical Examination</div>
+                                    <div class="info-value">Dr. Harshit | city clinic, Hyderabad</div>
+                                    <div class="info-value">Diagnosed with cough and cold. Prescription received.</div>
+                                    <div class="info-value">Date: 30 June 2025</div>
+                                </div>
+                                <div class="document-actions">
+                                    <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn"><i class="fas fa-download"></i></button>
+                                </div>
+                            </li>
+                            <li class="document-item">
+                                <div>
+                                    <div class="info-label">Covid-19 Vaccine</div>
+                                    <div class="info-value">Community Health Center, Bangalore</div>
+                                    <div class="info-value">First Dose and Booster dose administered.</div>
+                                    <div class="info-value">Date: 30 Nov. 2020</div>
+                                </div>
+                                <div class="document-actions">
+                                    <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn"><i class="fas fa-download"></i></button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                
+                <!-- QR Code Page -->
+                <div class="page" id="qr-page">
+                    <h2>My Health QR Code</h2>
+                    <p>Show this code to healthcare providers for quick access</p>
+                    
+                    <div class="qr-container">
+                        <div class="qr-code">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <p>Scan this code to access health information</p><br>
+                        <button class="btn" id="download-qr-btn">
+                            <i class="fas fa-download"></i> Download QR Code
+                        </button>
+                    </div>
+                    
+                    <div class="health-card">
+                        <h3>Emergency Information</h3>
+                        <div class="health-info">
+                            <div class="info-item">
+                                <div class="info-label">Name</div>
+                                <div class="info-value" id="emergency-name">P-Vijay</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Blood Group</div>
+                                <div class="info-value" id="emergency-blood">O+</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Emergency Contact</div>
+                                <div class="info-value" id="emergency-contact">+91 9876543210</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Allergies</div>
+                                <div class="info-value" id="emergency-allergies">None</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+                <!-- Chatbot Page -->
+
+
+                <div class="page" id="chatbot-page">
+                    <h2>Health Assistant Chatbot</h2>
+                    <p>Ask questions about your health and services</p>
+                    
+                    <div class="health-card" style="height: 60vh; display: flex; flex-direction: column;">
+                        <div id="chat-messages" class="flex-1 p-4 space-y-4 overflow-y-auto flex flex-col">
+                            <div class="chat-bubble bot-bubble">
+
+                                Hello! I am your Health Assistant. How can I help you today? 
+
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 border-t">
+                            <div class="flex space-x-2">
+
+                                <input type="text" id="chat-input" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500" placeholder="Type your message...">
+                                <button id="chat-send-btn" class="bg-teal-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-teal-700">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>CodeVengers</p>
+            <p> &copy;2025 Swasthya-Setu. All rights reserved.</p>
+        </div>
+    </div>
+    
+   
+    <script src="app.js"></script>
+</body>
+</html>
